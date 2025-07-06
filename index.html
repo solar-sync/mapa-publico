@@ -20,7 +20,7 @@
   }).addTo(map);
 
   // Cargar datos desde archivo público generado por n8n
-  fetch('/data/hogares.json')
+  fetch('/hogares.json')
     .then(res => res.json())
     .then(hogares => {
       hogares.forEach(hogar => {
