@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Mapa SolarSync Público</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+  <style>#map { height: 100vh; }</style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+<script>
+  const map = L.map('map').setView([-27.8, -64.3], 6);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+
+  // Cargar datos desde archivo público generado por n8n
+  fetch('/data/hogares.json')
+    .then(res => res.json())
+    .then(hogares => {
+      hogares.forEach(hogar => {
+        const color = hogar.estado === 'error' ? 'red' : hogar.estado === 'mantenimiento' ? 'orange' : 'green';
+        const marker = L.circleMarker([hogar.lat, hogar.lng], {
+          radius: 8,
+          fillColor: color,
+          color: '#000',
+          weight: 1,
+          opacity: 1,
+          fillOpacity: 0.8
+        }).addTo(map);
+
+        marker.bindPopup(`<strong>${hogar.nombre}</strong><br>${hogar.ciudad}<br>Estado: ${hogar.estado}`);
+      });
+    });
+</script>
+
+</body>
+</html>
