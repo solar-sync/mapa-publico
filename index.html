@@ -20,7 +20,7 @@
   }).addTo(map);
 
   // Cargar datos desde archivo público generado por n8n
-  fetch('/hogares.json')
+  fetch('https://solar-sync.github.io/mapa-publico/hogares.json')
     .then(res => res.json())
     .then(hogares => {
       hogares.forEach(hogar => {
