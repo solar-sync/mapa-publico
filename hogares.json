@@ -1,0 +1,16 @@
+[
+  {
+    "nombre": "Hogar A",
+    "ciudad": "Santiago del Estero",
+    "estado": "activo",
+    "lat": -27.795,
+    "lng": -64.261
+  },
+  {
+    "nombre": "Hogar B",
+    "ciudad": "La Banda",
+    "estado": "mantenimiento",
+    "lat": -27.738,
+    "lng": -64.242
+  }
+]
